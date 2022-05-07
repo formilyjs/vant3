@@ -1,9 +1,9 @@
-# @formily/vant
+# @formily/vant3
 
 > Formily Component Adaptor
 
 ## Install
 
 ```bash
-npm install @formily/vant --save
+npm install @formily/vant3 --save
 ```

@@ -4,11 +4,11 @@ const CodeSandBoxHTML = '<div id="app"></div>'
 const CodeSandBoxJS = `
 import Vue from 'vue'
 import App from './App.vue'
-import Element  from 'vant';
-import 'vant/lib/theme-chalk/index.css';
+import Vant from 'vant'
+import 'vant/lib/index.css'
 
 Vue.config.productionTip = false
-Vue.use(Element, { size: 'small' });
+Vue.use(Vant)
 
 new Vue({
   render: h => h(App),
@@ -65,12 +65,12 @@ export function createCodeSandBox(codeStr) {
           dependencies: {
             '@formily/core': 'latest',
             '@formily/vue': 'latest',
-            '@formily/vant': 'latest',
+            '@formily/vant3': 'latest',
             axios: '^0.21.1',
             'core-js': '^3.6.5',
-            vant: 'latest',
+            vant: '^3.4.8',
             'vue-demi': 'latest',
-            vue: '^2.6.11',
+            vue: '^3.2.24',
           },
           devDependencies: {
             '@vue/cli-plugin-babel': '~4.5.0',
@@ -81,7 +81,15 @@ export function createCodeSandBox(codeStr) {
             'sass-loader': '^8.0.2',
           },
           babel: {
-            presets: ['@vue/cli-plugin-babel/preset'],
+            presets: [
+              [
+                '@vue/babel-preset-jsx',
+                {
+                  vModel: false,
+                  compositionAPI: true,
+                },
+              ],
+            ],
           },
           vue: {
             devServer: {
@@ -108,7 +116,7 @@ export function createCodeSandBox(codeStr) {
     action: 'https://codesandbox.io/api/v1/sandboxes/define',
     data: {
       parameters,
-      query: 'file=/src/App.vue',
+      query: 'file=/src/App.vue&resolutionWidth=360&resolutionHeight=675',
     },
   })
 }

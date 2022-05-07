@@ -1,5 +1,5 @@
 {
-  "name": "@formily/vant-renderer",
+  "name": "@formily/vant3-renderer",
   "version": "1.0.0-alpha.0",
   "license": "MIT",
   "main": "lib",
@@ -8,9 +8,9 @@
     "npm": ">=3.0.0"
   },
   "module": "esm",
-  "umd:main": "dist/formily.vant-renderer.umd.production.js",
-  "unpkg": "dist/formily.vant-renderer.umd.production.js",
-  "jsdelivr": "dist/formily.vant-renderer.umd.production.js",
+  "umd:main": "dist/formily.vant3-renderer.umd.production.js",
+  "unpkg": "dist/formily.vant3-renderer.umd.production.js",
+  "jsdelivr": "dist/formily.vant3-renderer.umd.production.js",
   "jsnext:main": "esm",
   "sideEffects": [
     "dist/*",
@@ -26,12 +26,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/formilyjs/vant.git"
+    "url": "git+https://github.com/formilyjs/vant3.git"
   },
   "bugs": {
-    "url": "https://github.com/formilyjs/vant/issues"
+    "url": "https://github.com/formilyjs/vant3/issues"
   },
-  "homepage": "https://github.com/formilyjs/vant#readme",
+  "homepage": "https://github.com/formilyjs/vant3#readme",
   "publishConfig": {
     "access": "public"
   },

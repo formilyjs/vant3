@@ -1,41 +1,70 @@
 <template>
-  <FormProvider :form="form">
+  <Form :form="form">
     <Field
       name="input"
       title="输入框"
-      :decorator="[FormItem]"
-      :component="[Input]"
+      :decorator="[
+        FormItem,
+        {
+          errorMessageAlign: 'right',
+        },
+      ]"
+      :component="[
+        Input,
+        {
+          placeholder: '请输入',
+          inputAlign: 'right',
+          showWordLimit: true,
+          maxlength: 50,
+        },
+      ]"
+      :validator="[
+        {
+          required: true,
+          message: '输入框内容不可为空',
+        },
+      ]"
     />
     <Field
       name="textarea"
       title="文本框"
-      :decorator="[FormItem]"
-      :component="[Input.TextArea]"
+      :decorator="[
+        FormItem,
+        {
+          errorMessageAlign: 'right',
+        },
+      ]"
+      :component="[
+        Input,
+        {
+          type: 'textarea',
+          placeholder: '请输入',
+          inputAlign: 'right',
+          showWordLimit: true,
+          maxlength: 100,
+        },
+      ]"
+      :validator="[
+        {
+          required: true,
+          message: '文本框内容不可为空',
+        },
+      ]"
     />
-    <Submit @submit="log">提交</Submit>
-  </FormProvider>
+    <Submit :style="{ 'margin-top': '16px' }" round block @submit="onSubmit"
+      >提交</Submit
+    >
+  </Form>
 </template>
 
-<script>
+<script lang="ts" setup>
 import { createForm } from '@formily/core'
-import { FormProvider, Field } from '@formily/vue'
-import { FormItem, Input, Submit } from '@formily/vant'
+import { Field } from '@formily/vue'
+import { Form, FormItem, Input, Submit } from '@formily/vant3'
 
 const form = createForm()
 
-export default {
-  components: { FormProvider, Field, Submit },
-  data() {
-    return {
-      FormItem,
-      Input,
-      form,
-    }
-  },
-  methods: {
-    log(value) {
-      console.log(value)
-    },
-  },
+const onSubmit = (value) => {
+  console.log(value)
 }
 </script>

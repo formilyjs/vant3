@@ -1,51 +1,43 @@
 <template>
-  <FormProvider :form="form">
+  <Form :form="form">
     <SchemaField>
-      <SchemaVoidField
-        x-component="FormLayout"
+      <SchemaStringField
+        name="input"
+        title="输入框"
+        x-decorator="FormItem"
+        x-component="Input"
+      />
+      <SchemaStringField
+        name="textarea"
+        title="文本框"
+        x-decorator="FormItem"
+        x-component="Input"
         :x-component-props="{
-          labelCol: 6,
-          wrapperCol: 10,
+          type: 'textarea',
         }"
-      >
-        <SchemaStringField
-          name="input"
-          title="输入框"
-          x-decorator="FormItem"
-          :x-decorator-props="{
-            tooltip: '123',
-          }"
-          x-component="Input"
-          :required="true"
-        />
-        <SchemaStringField
-          name="select"
-          title="选择框"
-          x-decorator="FormItem"
-          x-component="Select"
-          :required="true"
-        />
-      </SchemaVoidField>
+      />
     </SchemaField>
-  </FormProvider>
+    <Submit :style="{ 'margin-top': '16px' }" round block @submit="onSubmit"
+      >提交</Submit
+    >
+  </Form>
 </template>
 
-<script>
+<script lang="ts" setup>
 import { createForm } from '@formily/core'
-import { createSchemaField, FormProvider } from '@formily/vue'
-import { FormLayout, FormItem, Input, Select } from '@formily/vant'
+import { createSchemaField } from '@formily/vue'
+import { Form, FormItem, Input, Submit } from '@formily/vant3'
 
-const fields = createSchemaField({
-  components: { FormLayout, FormItem, Input, Select },
+const form = createForm()
+const { SchemaField, SchemaStringField } = createSchemaField({
+  components: {
+    Form,
+    FormItem,
+    Input,
+  },
 })
 
-export default {
-  components: { FormProvider, ...fields },
-  data() {
-    const form = createForm()
-    return {
-      form,
-    }
-  },
+const onSubmit = (value) => {
+  console.log(value)
 }
 </script>

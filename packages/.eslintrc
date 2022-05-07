@@ -1,5 +1,5 @@
 {
-  "parser": "@typescript-eslint/parser",
+  "parser": "vue-eslint-parser",
   "extends": [
     "plugin:vue/vue3-recommended",
     "plugin:@typescript-eslint/recommended",
@@ -11,6 +11,7 @@
   "plugins": ["@typescript-eslint", "prettier", "markdown"],
   "parserOptions": {
     "sourceType": "module",
+    "parser": "@typescript-eslint/parser",
     "ecmaVersion": 10,
     "ecmaFeatures": {
       "jsx": true
@@ -37,9 +38,6 @@
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "@typescript-eslint/triple-slash-reference": 0,
     "@typescript-eslint/no-empty-function": 0,
-    "vue/require-prop-types": 0,
-    "vue/one-component-per-file": 0,
-    "vue/require-default-prop": 0,
     "no-console": [
       "error",
       {
@@ -48,7 +46,10 @@
     ],
     "prefer-const": 0,
     "no-var": 1,
-    "prefer-rest-params": 0
+    "prefer-rest-params": 0,
+    "vue/one-component-per-file": 0,
+    "vue/require-default-prop": 0,
+    "vue/max-attributes-per-line": 0
   },
   "overrides": [
     {
@@ -68,6 +69,12 @@
       "rules": {
         "@typescript-eslint/no-unused-vars": "off",
         "no-unused-vars": "off",
+        "no-console": "off"
+      }
+    },
+    {
+      "files": ["**/*/docs/**/*.{js,ts,tsx,vue}"],
+      "rules": {
         "no-console": "off"
       }
     }

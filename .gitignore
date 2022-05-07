@@ -27,3 +27,5 @@ doc-site
 .lerna-changelog
 .history
 .lint-report.log
+docs/.vuepress/.temp
+docs/.vuepress/.cache

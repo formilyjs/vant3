@@ -1,35 +1,25 @@
 <template>
-  <FormProvider :form="form">
+  <Form :form="form">
     <Field
       name="switch"
       title="开关"
       :decorator="[FormItem]"
       :component="[Switch]"
     />
-    <Submit @submit="log">提交</Submit>
-  </FormProvider>
+    <Submit :style="{ 'margin-top': '16px' }" round block @submit="onSubmit"
+      >提交</Submit
+    >
+  </Form>
 </template>
 
-<script>
+<script lang="ts" setup>
 import { createForm } from '@formily/core'
-import { FormProvider, Field } from '@formily/vue'
-import { FormItem, Switch, Submit } from '@formily/vant'
+import { Field } from '@formily/vue'
+import { Form, FormItem, Switch, Submit } from '@formily/vant3'
 
 const form = createForm()
 
-export default {
-  components: { FormProvider, Field, Submit },
-  data() {
-    return {
-      FormItem,
-      Switch,
-      form,
-    }
-  },
-  methods: {
-    log(value) {
-      console.log(value)
-    },
-  },
+const onSubmit = (value) => {
+  console.log(value)
 }
 </script>
