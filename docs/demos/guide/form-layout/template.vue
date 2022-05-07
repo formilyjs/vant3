@@ -1,45 +1,36 @@
 <template>
-  <FormProvider :form="form">
-    <FormLayout :labelCol="6" :wrapperCol="10">
-      <Field
-        name="input"
-        title="输入框"
-        :decorator="[
-          FormItem,
-          {
-            tooltip: '123',
-          },
-        ]"
-        :component="[Input]"
-        :required="true"
-      />
-      <Field
-        name="select"
-        title="选择框"
-        :decorator="[FormItem]"
-        :component="[Select]"
-        :required="true"
-      />
-    </FormLayout>
-  </FormProvider>
+  <Form :form="form">
+    <Field
+      name="input"
+      title="输入框"
+      :decorator="[FormItem]"
+      :component="[Input]"
+    />
+    <Field
+      name="textarea"
+      title="文本框"
+      :decorator="[FormItem]"
+      :component="[
+        Input,
+        {
+          type: 'textarea',
+        },
+      ]"
+    />
+    <Submit :style="{ 'margin-top': '16px' }" round block @submit="onSubmit"
+      >提交</Submit
+    >
+  </Form>
 </template>
 
-<script>
+<script lang="ts" setup>
 import { createForm } from '@formily/core'
-import { FormProvider, Field } from '@formily/vue'
-import { FormLayout, FormItem, Input, Select } from '@formily/vant'
+import { Field } from '@formily/vue'
+import { Form, FormItem, Input, Submit } from '@formily/vant3'
 
-export default {
-  components: { FormProvider, Field, FormLayout },
-  data() {
-    const form = createForm()
-    return {
-      FormLayout,
-      FormItem,
-      Input,
-      Select,
-      form,
-    }
-  },
+const form = createForm()
+
+const onSubmit = (value) => {
+  console.log(value)
 }
 </script>

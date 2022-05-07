@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["dep:@formily_reactive-vue"],
+  "sourcesContent": ["\nexport * from \"../../../../node_modules/@formily/reactive-vue/esm/index.js\""],
+  "mappings": ";;;;;;;;;;;;;;;AAAA;AAAA;AAAA;",
+  "names": []
+}

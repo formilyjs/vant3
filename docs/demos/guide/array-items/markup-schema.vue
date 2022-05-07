@@ -1,5 +1,5 @@
 <template>
-  <FormProvider :form="form">
+  <Form :form="form">
     <SchemaField>
       <SchemaArrayField
         name="string_array"
@@ -7,21 +7,14 @@
         x-decorator="FormItem"
         x-component="ArrayItems"
       >
-        <SchemaVoidField x-component="Space">
-          <SchemaVoidField
-            x-decorator="FormItem"
-            x-component="ArrayItems.SortHandle"
-          />
+        <SchemaVoidField>
           <SchemaStringField
-            x-decorator="FormItem"
-            required
             name="input"
             x-component="Input"
-            :x-component-props="{
-              style: {
-                width: '160px',
-              },
-            }"
+            title="输入框"
+            required
+            :x-component-props="{ placeholder: '请输入' }"
+            x-decorator="FormItem"
           />
           <SchemaVoidField
             x-decorator="FormItem"
@@ -37,52 +30,47 @@
         x-component="ArrayItems"
       >
         <SchemaObjectField>
-          <SchemaVoidField x-component="Space">
-            <SchemaVoidField
-              x-decorator="FormItem"
-              x-component="ArrayItems.SortHandle"
-            />
-            <SchemaStringField
-              x-decorator="FormItem"
-              required
-              title="日期"
-              name="date"
-              x-component="DatePicker"
-              :x-component-props="{
-                type: 'daterange',
-                style: {
-                  width: '160px',
-                },
-              }"
-            />
-            <SchemaStringField
-              x-decorator="FormItem"
-              required
-              title="输入框"
-              name="input"
-              x-component="Input"
-            />
-            <SchemaStringField
-              x-decorator="FormItem"
-              required
-              title="选择框"
-              name="select"
-              :enum="[
-                { label: '选项1', value: 1 },
-                { label: '选项2', value: 2 },
-              ]"
-              x-component="Select"
-              :x-component-props="{
-                style: {
-                  width: 160,
-                },
-              }"
-            />
-            <SchemaVoidField
-              x-decorator="FormItem"
-              x-component="ArrayItems.Remove"
-            />
-          </SchemaVoidField>
+          <SchemaStringField
+            required
+            title="日期"
+            name="date"
+            x-component="DatetimePicker"
+          />
+          <SchemaStringField
+            required
+            title="输入框"
+            name="input"
+            x-decorator="FormItem"
+            x-component="Input"
+          />
+          <SchemaStringField
+            required
+            title="选择框"
+            name="select"
+            x-component="Picker"
+            :x-component-props="{
+              formItemProps: {
+                placeholder: '选择城市',
+              },
+              popupProps: {},
+              pickerProps: {
+                columns: [
+                  '杭州',
+                  '宁波',
+                  '温州',
+                  '绍兴',
+                  '湖州',
+                  '嘉兴',
+                  '金华',
+                  '衢州',
+                ],
+              },
+            }"
+          />
+          <SchemaVoidField
+            x-decorator="FormItem"
+            x-component="ArrayItems.Remove"
+          />
         </SchemaObjectField>
         <SchemaVoidField x-component="ArrayItems.Addition" title="添加条目" />
       </SchemaArrayField>
@@ -91,96 +79,68 @@
         title="对象数组"
         x-decorator="FormItem"
         x-component="ArrayItems"
-        :x-component-props="{ style: { width: '600px' } }"
       >
         <SchemaObjectField x-decorator="ArrayItems.Item">
-          <SchemaVoidField x-component="Space">
-            <SchemaVoidField
-              x-decorator="FormItem"
-              x-component="ArrayItems.SortHandle"
-            />
-            <SchemaStringField
-              x-decorator="FormItem"
-              required
-              title="日期"
-              name="date"
-              x-component="DatePicker"
-              :x-component-props="{
-                type: 'daterange',
-                style: {
-                  width: '250px',
-                },
-              }"
-            />
-            <SchemaStringField
-              x-decorator="FormItem"
-              required
-              title="输入框"
-              name="input"
-              x-component="Input"
-            />
-            <SchemaVoidField
-              x-decorator="FormItem"
-              x-component="ArrayItems.Remove"
-            />
-          </SchemaVoidField>
+          <SchemaStringField
+            required
+            title="日期"
+            name="date"
+            x-component="DatetimePicker"
+          />
+          <SchemaStringField
+            title="输入框"
+            x-decorator="FormItem"
+            name="input"
+            x-component="Input"
+          />
+          <SchemaVoidField
+            x-decorator="FormItem"
+            x-component="ArrayItems.Remove"
+          />
         </SchemaObjectField>
         <SchemaVoidField x-component="ArrayItems.Addition" title="添加条目" />
       </SchemaArrayField>
     </SchemaField>
-    <FormButtonGroup>
-      <Submit @submit="log">提交</Submit>
-    </FormButtonGroup>
-  </FormProvider>
+    <Submit :style="{ 'margin-top': '16px' }" round block @submit="onSubmit"
+      >提交</Submit
+    >
+  </Form>
 </template>
 
-<script>
+<script lang="ts" setup>
 import { createForm } from '@formily/core'
-import { FormProvider, createSchemaField } from '@formily/vue'
+import { createSchemaField } from '@formily/vue'
 import {
+  Form,
   FormItem,
-  FormButtonGroup,
   Submit,
   Input,
-  Select,
-  Space,
-  DatePicker,
   ArrayItems,
-} from '@formily/vant'
-import { Button } from 'vant'
+  DatetimePicker,
+  Picker,
+  Group,
+} from '@formily/vant3'
 
-const SchemaField = createSchemaField({
+const form = createForm()
+const {
+  SchemaField,
+  SchemaStringField,
+  SchemaArrayField,
+  SchemaVoidField,
+  SchemaObjectField,
+} = createSchemaField({
   components: {
     FormItem,
-    Space,
     Input,
-    Select,
-    DatePicker,
     ArrayItems,
+    DatetimePicker,
+    Picker,
+    Group,
   },
 })
 
-export default {
-  components: {
-    FormProvider,
-    FormButtonGroup,
-    Button,
-    Submit,
-    ...SchemaField,
-  },
-
-  data() {
-    const form = createForm()
-
-    return {
-      form,
-    }
-  },
-  methods: {
-    log(values) {
-      console.log(values)
-    },
-  },
+const onSubmit = (value) => {
+  console.log(value)
 }
 </script>
 

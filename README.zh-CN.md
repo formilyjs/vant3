@@ -2,11 +2,11 @@
 
 <p align="center">
 <img src="https://img.alicdn.com/tfs/TB1fHhZu4D1gK0jSZFyXXciOVXa-2500-1200.png">
-<img src="https://img.shields.io/npm/dt/@formily/vant"/>
-<img src="https://img.shields.io/npm/dm/@formily/vant"/>
-<a href="https://www.npmjs.com/package/@formily/vant"><img src="https://img.shields.io/npm/v/@formily/vant.svg"></a>
-<a href="https://codecov.io/gh/formilyjs/vant">
-  <img src="https://codecov.io/gh/formilyjs/vant/branch/master/graph/badge.svg?token=3V9RU8Wh9d"/>
+<img src="https://img.shields.io/npm/dt/@formily/vant3"/>
+<img src="https://img.shields.io/npm/dm/@formily/vant3"/>
+<a href="https://www.npmjs.com/package/@formily/vant3"><img src="https://img.shields.io/npm/v/@formily/vant3.svg"></a>
+<a href="https://codecov.io/gh/formilyjs/vant3">
+  <img src="https://codecov.io/gh/formilyjs/vant3/branch/master/graph/badge.svg?token=3V9RU8Wh9d"/>
 </a>
 <img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"/>
 <a href="https://github.com/actions-cool/issues-helper">
@@ -18,7 +18,7 @@
 
 ## 概要
 
-这是一个结合了 Formily & vant 的超酷组件库.
+这是一个结合了 Formily & vant3 的超酷组件库.
 
 ## 特性
 
@@ -35,7 +35,7 @@
 
 ## 官网
 
-https://vant.formilyjs.org
+https://vant3.formilyjs.org
 
 ## 生态产品
 
@@ -50,7 +50,7 @@ https://vant.formilyjs.org
 ## 贡献者
 
 This project exists thanks to all the people who contribute.
-<a href="https://github.com/formilyjs/vant/graphs/contributors"><img src="https://contrib.rocks/image?repo=formilyjs/vant" /></a>
+<a href="https://github.com/formilyjs/vant3/graphs/contributors"><img src="https://contrib.rocks/image?repo=formilyjs/vant3" /></a>
 
 ## LICENSE
 

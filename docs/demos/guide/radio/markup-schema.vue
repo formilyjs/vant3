@@ -1,51 +1,46 @@
 <template>
-  <FormProvider :form="form">
+  <Form :form="form">
     <SchemaField>
       <SchemaStringField
         name="input"
         title="单选"
-        x-decorator="FormItem"
         x-component="Radio.Group"
+        x-decorator="FormItem"
         :enum="[
           {
             label: '选项1',
-            value: 1,
+            name: 1,
           },
           {
             label: '选项2',
-            value: 2,
+            name: 2,
           },
         ]"
+        :x-component-props="{
+          direction: 'horizontal',
+        }"
       />
     </SchemaField>
-    <Submit @submit="log">提交</Submit>
-  </FormProvider>
+    <Submit :style="{ 'margin-top': '16px' }" round block @submit="onSubmit"
+      >提交</Submit
+    >
+  </Form>
 </template>
 
-<script>
+<script lang="ts" setup>
 import { createForm } from '@formily/core'
-import { createSchemaField, FormProvider } from '@formily/vue'
-import { FormItem, Radio, Submit } from '@formily/vant'
+import { createSchemaField } from '@formily/vue'
+import { Form, FormItem, Radio, Submit } from '@formily/vant3'
 
 const form = createForm()
-const fields = createSchemaField({
+const { SchemaField, SchemaStringField } = createSchemaField({
   components: {
     FormItem,
     Radio,
   },
 })
 
-export default {
-  components: { FormProvider, ...fields, Submit },
-  data() {
-    return {
-      form,
-    }
-  },
-  methods: {
-    log(value) {
-      console.log(value)
-    },
-  },
+const onSubmit = (value) => {
+  console.log(value)
 }
 </script>

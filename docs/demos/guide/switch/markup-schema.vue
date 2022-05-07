@@ -1,5 +1,5 @@
 <template>
-  <FormProvider :form="form">
+  <Form :form="form">
     <SchemaField>
       <SchemaBooleanField
         name="switch"
@@ -8,34 +8,26 @@
         x-component="Switch"
       />
     </SchemaField>
-    <Submit @submit="log">提交</Submit>
-  </FormProvider>
+    <Submit :style="{ 'margin-top': '16px' }" round block @submit="onSubmit"
+      >提交</Submit
+    >
+  </Form>
 </template>
 
-<script>
+<script lang="ts" setup>
 import { createForm } from '@formily/core'
-import { createSchemaField, FormProvider } from '@formily/vue'
-import { FormItem, Switch, Submit } from '@formily/vant'
+import { createSchemaField } from '@formily/vue'
+import { Form, FormItem, Switch, Submit } from '@formily/vant3'
 
 const form = createForm()
-const fields = createSchemaField({
+const { SchemaField, SchemaBooleanField } = createSchemaField({
   components: {
     FormItem,
     Switch,
   },
 })
 
-export default {
-  components: { FormProvider, ...fields, Submit },
-  data() {
-    return {
-      form,
-    }
-  },
-  methods: {
-    log(value) {
-      console.log(value)
-    },
-  },
+const onSubmit = (value) => {
+  console.log(value)
 }
 </script>

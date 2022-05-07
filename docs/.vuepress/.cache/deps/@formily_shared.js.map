@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["dep:@formily_shared"],
+  "sourcesContent": ["\nexport * from \"../../../../node_modules/@formily/shared/esm/index.js\""],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;",
+  "names": []
+}

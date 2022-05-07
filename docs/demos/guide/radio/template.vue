@@ -1,45 +1,37 @@
 <template>
-  <FormProvider :form="form">
+  <Form :form="form">
     <Field
       name="input"
       title="单选"
       :decorator="[FormItem]"
-      :component="[Radio.Group]"
+      :component="[Radio.Group, {
+        direction: 'horizontal'
+      }]"
       :dataSource="[
         {
           label: '选项1',
-          value: 1,
+          name: 1,
         },
         {
           label: '选项2',
-          value: 2,
+          name: 2,
         },
       ]"
     />
-    <Submit @submit="log">提交</Submit>
-  </FormProvider>
+    <Submit :style="{ 'margin-top': '16px' }" round block @submit="onSubmit"
+      >提交</Submit
+    >
+  </Form>
 </template>
 
-<script>
+<script lang="ts" setup>
 import { createForm } from '@formily/core'
-import { FormProvider, Field } from '@formily/vue'
-import { FormItem, Radio, Submit } from '@formily/vant'
+import { Field } from '@formily/vue'
+import { Form, FormItem, Radio, Submit } from '@formily/vant3'
 
 const form = createForm()
 
-export default {
-  components: { FormProvider, Field, Submit },
-  data() {
-    return {
-      FormItem,
-      Radio,
-      form,
-    }
-  },
-  methods: {
-    log(value) {
-      console.log(value)
-    },
-  },
+const onSubmit = (value) => {
+  console.log(value)
 }
 </script>

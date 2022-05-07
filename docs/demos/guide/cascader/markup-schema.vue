@@ -2,90 +2,64 @@
   <Form :form="form">
     <SchemaField>
       <SchemaStringField
-        name="address"
-        title="地址选择"
-        required
-        x-decorator="FormItem"
+        name="cascader"
+        title="地区"
         x-component="Cascader"
         :x-component-props="{
-          style: {
-            width: '240px',
+          formItemProps: {
+            placeholder: '请选择所在地区',
+            format: (data: any) => {
+              const { selectedOptions = [] } = data || {}
+              return data?.selectedOptions.map((option) => option.text).join('/')
+            },
+          },
+          popupProps: {},
+          cascaderProps: {
+            options: [
+              {
+                text: '浙江省',
+                value: '330000',
+                children: [{ text: '杭州市', value: '330100' }],
+              },
+              {
+                text: '江苏省',
+                value: '320000',
+                children: [{ text: '南京市', value: '320100' }],
+              },
+            ],
+          },
+          fieldListeners: {},
+          popupListeners: {},
+          cascaderListeners: {
+            change: cascaderChange,
           },
         }"
       />
     </SchemaField>
-
-    <Submit @submit="onSubmit">提交</Submit>
+    <Submit :style="{ 'margin-top': '16px' }" round block @submit="onSubmit"
+      >提交</Submit
+    >
   </Form>
 </template>
 
-<script>
-import { createForm, onFieldReact } from '@formily/core'
+<script lang="ts" setup>
+import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
-import { Form, FormItem, Cascader, Submit } from '@formily/vant'
-import { action } from '@formily/reactive'
-import axios from 'axios'
+import { Form, FormItem, Cascader, Submit } from '@formily/vant3'
 
-const transformAddress = (data = {}) => {
-  return Object.entries(data).reduce((buf, [key, value]) => {
-    if (typeof value === 'string')
-      return buf.concat({
-        label: value,
-        value: key,
-      })
-    const { name, code, cities, districts } = value
-    const _cities = transformAddress(cities)
-    const _districts = transformAddress(districts)
-    return buf.concat({
-      label: name,
-      value: code,
-      children: _cities.length
-        ? _cities
-        : _districts.length
-        ? _districts
-        : undefined,
-    })
-  }, [])
-}
-
-const useAddress = (pattern) => {
-  onFieldReact(pattern, (field) => {
-    field.loading = true
-    axios('//unpkg.com/china-location/dist/location.json')
-      .then((res) => res.data)
-      .then(
-        action.bound((data) => {
-          field.dataSource = transformAddress(data)
-          field.loading = false
-        })
-      )
-  })
-}
-
-const form = createForm({
-  effects: () => {
-    useAddress('address')
-  },
-})
-const fields = createSchemaField({
+const form = createForm()
+const { SchemaField, SchemaStringField } = createSchemaField({
   components: {
     FormItem,
     Cascader,
   },
 })
 
-export default {
-  components: { Form, ...fields, Submit },
-  data() {
-    return {
-      form,
-    }
-  },
-  methods: {
-    onSubmit(value) {
-      console.log(value)
-    },
-  },
+const onSubmit = (value) => {
+  console.log(value)
+}
+
+const cascaderChange = (...args) => {
+  console.log('onChange args: ', args)
 }
 </script>
-l

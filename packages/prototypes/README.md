@@ -1,9 +1,9 @@
-# @formily/vant-prototypes
+# @formily/vant3-prototypes
 
 > Formily Designable Component Adaptor
 
 ## Install
 
 ```bash
-npm install @formily/vant-prototypes --save
+npm install @formily/vant3-prototypes --save
 ```
