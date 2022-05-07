@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["dep:@formily_core"],
-  "sourcesContent": ["\nexport * from \"../../../../node_modules/@formily/core/esm/index.js\""],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;",
-  "names": []
-}
