@@ -3,7 +3,7 @@ home: true
 heroText: Formily Vant3
 tagline: 基于 vant3 封装的 Formily2.x 组件体系
 actions:
-  - text: 开发指南
+  - text: 组件文档
     link: /guide/
 features:
   - title: 更易用
@@ -12,7 +12,7 @@ features:
     details: 傻瓜写法，超高性能
   - title: 更专业
     details: 完备，灵活，优雅
-footer: Open-source MIT Licensed | Copyright © 2019-present
+footer: Open-source MIT Licensed | Copyright © 2022-present
 ---
 
 ## 安装
