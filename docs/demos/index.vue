@@ -5,6 +5,7 @@
         name="input"
         title="输入框"
         x-component="Input"
+        x-decorator="FormItem"
         :x-component-props="{ placeholder: '请输入' }"
         required
       />

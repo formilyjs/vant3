@@ -186,6 +186,7 @@
 import { createForm } from '@formily/core'
 import { createSchemaField } from '@formily/vue'
 import { Form, PreviewText, FormItem, Submit } from '@formily/vant3'
+import { onMounted } from 'vue'
 
 const form = createForm()
 const { SchemaField, SchemaStringField, SchemaArrayField } = createSchemaField({
@@ -195,4 +196,11 @@ const { SchemaField, SchemaStringField, SchemaArrayField } = createSchemaField({
     Submit,
   },
 })
+
+onMounted(() => {
+  form.setState((state) => {
+    state.readPretty = true
+  })
+})
+
 </script>
